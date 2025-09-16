@@ -1,1 +1,14 @@
-spring.application.name=mongodemo
+spring:
+  application:
+    name: mongodemo
+  data:
+    mongodb:
+      username: tdz93
+      password: tdz93
+      host: localhost
+      port: 27017
+      database: mongodemo
+      authentication-database: admin
+
+server:
+  port: 9000
