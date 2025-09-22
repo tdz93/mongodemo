@@ -6,6 +6,7 @@ import com.github.tdz93.mongodemo.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -36,6 +37,38 @@ public class ProductService {
 
     public void delete(String id) {
         repository.deleteById(id);
+    }
+
+    public List<Product> findByName(String name) {
+        return repository.findByName(name);
+    }
+
+    public List<Product> findByNameStartingWith(String name) {
+        return repository.findByNameStartingWith(name);
+    }
+
+    public List<Product> findByNameEndingWith(String name) {
+        return repository.findByNameEndingWith(name);
+    }
+
+    public List<Product> findByNameContaining(String name) {
+        return repository.findByNameContaining(name);
+    }
+
+    public List<Product> findByPriceLte(BigDecimal price) {
+        return repository.findByPriceLte(price);
+    }
+
+    public List<Product> findByPriceGte(BigDecimal price) {
+        return repository.findByPriceGte(price);
+    }
+
+    public List<Product> sortByFieldAsc(String field, int page) {
+        return repository.sortByFieldAsc(field, page);
+    }
+
+    public List<Product> sortByFieldDesc(String field, int page) {
+        return repository.sortByFieldDesc(field, page);
     }
 
 }

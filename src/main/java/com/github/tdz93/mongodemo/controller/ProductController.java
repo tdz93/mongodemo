@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -40,6 +41,64 @@ public class ProductController {
     ) {
         service.delete(id);
         return ResponseEntity.accepted().build();
+    }
+
+    @GetMapping("/name/is")
+    public ResponseEntity<List<Product>> findByName(
+            @RequestParam("name") String name
+    ) {
+        return ResponseEntity.ok(service.findByName(name));
+    }
+
+    @GetMapping("/name/starting-with")
+    public ResponseEntity<List<Product>> findByNameStartingWith(
+            @RequestParam("name") String name
+    ) {
+        return ResponseEntity.ok(service.findByNameStartingWith(name));
+    }
+
+    @GetMapping("/name/ending-with")
+    public ResponseEntity<List<Product>> findByNameEndingWith(
+            @RequestParam("name") String name
+    ) {
+        return ResponseEntity.ok(service.findByNameEndingWith(name));
+    }
+
+    @GetMapping("/name/containing")
+    public ResponseEntity<List<Product>> findByNameContaining(
+            @RequestParam("name") String name
+    ) {
+        return ResponseEntity.ok(service.findByNameContaining(name));
+    }
+
+    @GetMapping("/price/lte")
+    public ResponseEntity<List<Product>> findByPriceLte(
+            @RequestParam("price") BigDecimal price
+            ) {
+        return ResponseEntity.ok(service.findByPriceLte(price));
+    }
+
+    @GetMapping("/price/gte")
+    public ResponseEntity<List<Product>> findByPriceGte(
+            @RequestParam("price") BigDecimal price
+            ) {
+        return ResponseEntity.ok(service.findByPriceGte(price));
+    }
+
+    @GetMapping("/sort/asc")
+    public ResponseEntity<List<Product>> sortByFieldAsc(
+            @RequestParam("field") String field,
+            @RequestParam("page") int page
+    ) {
+        return ResponseEntity.ok(service.sortByFieldAsc(field, page));
+    }
+
+    @GetMapping("/sort/desc")
+    public ResponseEntity<List<Product>> sortByFieldDesc(
+            @RequestParam("field") String field,
+            @RequestParam("page") int page
+    ) {
+        return ResponseEntity.ok(service.sortByFieldDesc(field, page));
     }
 
 }
