@@ -43,28 +43,7 @@ public class ProductController {
         return ResponseEntity.accepted().build();
     }
 
-    @GetMapping("/name/is")
-    public ResponseEntity<List<Product>> findByName(
-            @RequestParam("name") String name
-    ) {
-        return ResponseEntity.ok(service.findByName(name));
-    }
-
-    @GetMapping("/name/starting-with")
-    public ResponseEntity<List<Product>> findByNameStartingWith(
-            @RequestParam("name") String name
-    ) {
-        return ResponseEntity.ok(service.findByNameStartingWith(name));
-    }
-
-    @GetMapping("/name/ending-with")
-    public ResponseEntity<List<Product>> findByNameEndingWith(
-            @RequestParam("name") String name
-    ) {
-        return ResponseEntity.ok(service.findByNameEndingWith(name));
-    }
-
-    @GetMapping("/name/containing")
+    @GetMapping("/name")
     public ResponseEntity<List<Product>> findByNameContaining(
             @RequestParam("name") String name
     ) {
@@ -88,17 +67,19 @@ public class ProductController {
     @GetMapping("/sort/asc")
     public ResponseEntity<List<Product>> sortByFieldAsc(
             @RequestParam("field") String field,
-            @RequestParam("page") int page
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "2") int size
     ) {
-        return ResponseEntity.ok(service.sortByFieldAsc(field, page));
+        return ResponseEntity.ok(service.sortByFieldAsc(field, page, size));
     }
 
     @GetMapping("/sort/desc")
     public ResponseEntity<List<Product>> sortByFieldDesc(
             @RequestParam("field") String field,
-            @RequestParam("page") int page
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "2") int size
     ) {
-        return ResponseEntity.ok(service.sortByFieldDesc(field, page));
+        return ResponseEntity.ok(service.sortByFieldDesc(field, page, size));
     }
 
 }

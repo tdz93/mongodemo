@@ -39,36 +39,24 @@ public class ProductService {
         repository.deleteById(id);
     }
 
-    public List<Product> findByName(String name) {
-        return repository.findByName(name);
-    }
-
-    public List<Product> findByNameStartingWith(String name) {
-        return repository.findByNameStartingWith(name);
-    }
-
-    public List<Product> findByNameEndingWith(String name) {
-        return repository.findByNameEndingWith(name);
-    }
-
     public List<Product> findByNameContaining(String name) {
-        return repository.findByNameContaining(name);
+        return repository.findAllByNameContainingIgnoreCase(name);
     }
 
     public List<Product> findByPriceLte(BigDecimal price) {
-        return repository.findByPriceLte(price);
+        return repository.findAllByPriceLessThanEqual(price);
     }
 
     public List<Product> findByPriceGte(BigDecimal price) {
-        return repository.findByPriceGte(price);
+        return repository.findAllByPriceGreaterThanEqual(price);
     }
 
-    public List<Product> sortByFieldAsc(String field, int page) {
-        return repository.sortByFieldAsc(field, page);
+    public List<Product> sortByFieldAsc(String field, int page, int size) {
+        return repository.sortByFieldAsc(field, page, size);
     }
 
-    public List<Product> sortByFieldDesc(String field, int page) {
-        return repository.sortByFieldDesc(field, page);
+    public List<Product> sortByFieldDesc(String field, int page, int size) {
+        return repository.sortByFieldDesc(field, page, size);
     }
 
 }
